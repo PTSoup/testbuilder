@@ -8,22 +8,25 @@
 //   2. The number of digits in the number (called the length)
 
 var detectNetwork = function(cardNumber) {
-    var numbers = cardNumber.length;
+    var nums = cardNumber.length;
     var key = Number(cardNumber.slice(0, 2));
 
-    if ([13, 16, 19].includes(numbers) && Number(cardNumber.charAt(0)) === 4) {
-      return `Visa`;
+    if ([13, 16, 19].includes(nums) && Number(cardNumber.charAt(0)) === 4) {
+        return `Visa`;
     };
 
-    if (numbers === 14 && [38, 39].includes(key)) {
+    if (nums === 14 && [38, 39].includes(key)) {
         return `Diner's Club`;
-    } else if ([34, 37].includes(key) && numbers === 15) {
+    } else if ([34, 37].includes(key) && nums === 15) {
         return `American Express`;
-    } else if ([51, 52, 53, 54, 55].includes(key) && numbers === 16) {
+    } else if ([51, 52, 53, 54, 55].includes(key) && nums === 16) {
         return `MasterCard`;
+    } else if ([60, 64, 65].includes(key) && (nums === 16 || nums === 19)) {
+        return `Discover`;
+    } else if ([50, 63].includes(key) && (nums <= 12 || nums <= 19)) {
+        return `Maestro`;
     } else {
         return `Network Not Found`;
     };
 };
-
 
