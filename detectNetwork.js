@@ -8,11 +8,16 @@
 //   2. The number of digits in the number (called the length)
 
 var detectNetwork = function(cardNumber) {
-  // Note: `cardNumber` will always be a string
-  // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
-  // The American Express network always starts with a 34 or 37 and is 15 digits long
+    var numbers = cardNumber.length;
+    var key = Number(cardNumber.slice(0, 2));
 
-  // Once you've read this, go ahead and try to implement this function, then return to the console.
+    if (numbers === 14 && [38, 39].includes(key)) {
+        return `Diner's Club`;
+    } else if (numbers === 15 && [34, 37].includes(key)) {
+        return `American Express`;
+    } else {
+        return `Network Not Found`;
+    }
 };
 
 
