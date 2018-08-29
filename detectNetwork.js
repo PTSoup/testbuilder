@@ -11,13 +11,19 @@ var detectNetwork = function(cardNumber) {
     var numbers = cardNumber.length;
     var key = Number(cardNumber.slice(0, 2));
 
+    if ([13, 16, 19].includes(numbers) && Number(cardNumber.charAt(0)) === 4) {
+      return `Visa`;
+    };
+
     if (numbers === 14 && [38, 39].includes(key)) {
         return `Diner's Club`;
-    } else if (numbers === 15 && [34, 37].includes(key)) {
+    } else if ([34, 37].includes(key) && numbers === 15) {
         return `American Express`;
+    } else if ([51, 52, 53, 54, 55].includes(key) && numbers === 16) {
+        return `MasterCard`;
     } else {
         return `Network Not Found`;
-    }
+    };
 };
 
 
